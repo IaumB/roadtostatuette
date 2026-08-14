@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/road_to_statuette_WIKIDATA_Pix.html" }
+  ]
+}
