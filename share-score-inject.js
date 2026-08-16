@@ -11,8 +11,7 @@
     .share-fechar{position:absolute;right:13px;top:11px;width:34px;height:34px;padding:0;border-radius:50%;background:transparent;color:var(--apagado);border:1px solid rgba(255,255,255,.12);box-shadow:none}
     .share-fechar:hover:not(:disabled){color:var(--texto);box-shadow:none}
     .share-kicker{font-size:10px;letter-spacing:2.4px;text-transform:uppercase;color:var(--dourado);font-weight:700}
-    .share-card h2{font-size:27px;color:var(--dourado-claro);margin:5px 42px 4px 0}
-    .share-card .share-sub{color:var(--apagado);font-size:12px;line-height:1.5;margin-bottom:14px}
+    .share-card h2{font-size:27px;color:var(--dourado-claro);margin:5px 42px 14px 0}
     .share-preview{white-space:pre-wrap;word-break:break-word;padding:16px;border-radius:12px;background:rgba(7,5,6,.72);border:1px solid rgba(255,255,255,.09);color:#f5eee7;font:600 14px/1.55 'Inter',system-ui,sans-serif;text-align:left;user-select:text}
     .share-acoes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
     .share-acoes button{border-radius:10px;padding:12px 14px;font-size:13.5px}
@@ -55,7 +54,6 @@
         <button class="share-fechar" id="btn-fechar-share" aria-label="Fechar">&times;</button>
         <div class="share-kicker">Road to Statuette</div>
         <h2 id="share-titulo">Compartilhe seu score</h2>
-        <p class="share-sub">Formato compacto, no estilo dos jogos diários: copie o resultado ou abra o Twitter já com o texto preenchido.</p>
         <div class="share-preview" id="share-preview"></div>
         <div class="share-acoes">
           <button class="share-copiar" id="btn-copiar-score">&#128203; Copiar resultado</button>
@@ -85,7 +83,7 @@
       const campeao = !!(ultimo && ultimo.ganhou && rodada >= M().rodadas);
       linhas.push('🏆 Temporada de Prêmios · ' + (campeao ? 'CAMPEÃO' : 'eliminado'));
       linhas.push('🎞️ ' + trilhaScore() + '  ' + vitorias + '/' + M().rodadas);
-      linhas.push('⭐ Categorias ' + catsVencidas + '×' + catsPerdidas + ' · elenco ' + fmtMedia(mediaElencoScore(time)));
+      linhas.push('⭐ Elenco ' + fmtMedia(mediaElencoScore(time)));
     } else if (modo === 'academia'){
       const h = historico[historico.length - 1];
       const d = lerDados();
@@ -115,6 +113,7 @@
     document.getElementById('share-preview').textContent = textoScoreAtual;
     document.getElementById('btn-copiar-score').innerHTML = '&#128203; Copiar resultado';
     document.getElementById('modal-share').classList.remove('oculto');
+    if (window.RTAnalytics) window.RTAnalytics.track('share_open');
     setTimeout(() => document.getElementById('btn-copiar-score').focus(), 0);
   }
   function fecharCompartilhamento(){ document.getElementById('modal-share').classList.add('oculto'); }
@@ -131,12 +130,14 @@
       try { ok = document.execCommand('copy'); } catch(e){}
       area.remove();
     }
+    if (window.RTAnalytics) window.RTAnalytics.track('share_copy', { ok });
     const btn = document.getElementById('btn-copiar-score');
     btn.textContent = ok ? '✓ Copiado!' : 'Selecione e copie o texto';
     setTimeout(() => { btn.innerHTML = '&#128203; Copiar resultado'; }, 1800);
   }
   function abrirTwitterScore(){
     const texto = textoScoreAtual || montarTextoScore();
+    if (window.RTAnalytics) window.RTAnalytics.track('share_twitter');
     window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(texto), '_blank', 'noopener,noreferrer,width=720,height=620');
   }
 

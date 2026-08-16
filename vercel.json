@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/share-score-preview.html" }
+    { "source": "/", "destination": "/share-score-preview.html" },
+    { "source": "/crm", "destination": "/crm.html" }
   ]
 }
