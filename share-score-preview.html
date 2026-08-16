@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Road to Statuette — Share Score Preview</title>
+  <title>Road to Statuette</title>
   <style>
     html,body{margin:0;width:100%;height:100%;background:#0a0708;overflow:hidden}
     iframe{display:block;border:0;width:100%;height:100%;background:#0a0708}
@@ -15,10 +15,10 @@
     const frame = document.getElementById('game');
     frame.addEventListener('load', () => {
       const doc = frame.contentDocument;
-      if (!doc || doc.getElementById('share-score-inject')) return;
+      if (!doc || doc.getElementById('share-score-loader')) return;
       const s = doc.createElement('script');
-      s.id = 'share-score-inject';
-      s.src = '/share-score-inject.js?v=1';
+      s.id = 'share-score-loader';
+      s.src = '/share-score-loader.js?v=1';
       doc.body.appendChild(s);
     });
   </script>
