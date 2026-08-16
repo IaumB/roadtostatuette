@@ -752,18 +752,20 @@
   .apoie.discreto:hover{background:rgba(212,175,55,.14);border-color:var(--dourado);box-shadow:none}
 
   /* ----- sequência diária ----- */
+  /* tudo na mesma linha de base do número, para os textos não flutuarem
+     em alturas diferentes; ícone e semana continuam centralizados */
   .sequencia{
-    display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:14px;
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-top:14px;
     padding:12px 14px;border-radius:12px;
     background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
     border:1px solid rgba(212,175,55,.22);
   }
   .sequencia .chama{display:flex;align-items:baseline;gap:7px}
   .sequencia .chama .n{font-family:'Playfair Display',serif;font-size:30px;font-weight:800;color:var(--dourado-claro);line-height:1}
-  .sequencia .chama .rot{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--apagado)}
-  .sequencia .fogo{font-size:22px;filter:drop-shadow(0 0 10px rgba(224,120,60,.5))}
-  .sequencia .recorde{font-size:11.5px;color:var(--apagado)}
-  .sequencia .semana{display:flex;gap:6px;margin-left:auto}
+  .sequencia .chama .rot{font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--apagado);line-height:1}
+  .sequencia .fogo{font-size:22px;line-height:1;align-self:center;filter:drop-shadow(0 0 10px rgba(224,120,60,.5))}
+  .sequencia .recorde{font-size:11.5px;line-height:1;color:var(--apagado)}
+  .sequencia .semana{display:flex;gap:6px;margin-left:auto;align-self:center}
   .dia-sel{
     width:26px;height:32px;border-radius:7px;display:grid;place-items:center;
     font-size:10px;letter-spacing:.5px;color:var(--apagado);
@@ -772,7 +774,7 @@
   .dia-sel.ganhou{background:rgba(212,175,55,.22);border-color:var(--dourado);color:#fff3cd}
   .dia-sel.perdeu{background:rgba(180,70,70,.18);border-color:rgba(200,90,90,.45);color:#e8b0b0}
   .dia-sel.hoje{box-shadow:0 0 0 2px rgba(212,175,55,.35)}
-  .sequencia .aviso{font-size:11.5px;color:var(--dourado-claro)}
+  .sequencia .aviso{font-size:11.5px;line-height:1;color:var(--dourado-claro)}
   @media (max-width:700px){
     .sequencia{gap:10px;padding:10px}
     .sequencia .semana{margin-left:0;width:100%;justify-content:space-between}
