@@ -10,15 +10,29 @@
   </style>
 </head>
 <body>
-  <iframe id="game" src="/road_to_statuette_WIKIDATA_Pix.html" title="Road to Statuette"></iframe>
+  <iframe id="game" title="Road to Statuette"></iframe>
   <script>
     const frame = document.getElementById('game');
+    const params = new URLSearchParams(location.search);
+    const hasCampaign = params.has('utm_source') || params.has('utm_medium') || params.has('utm_campaign') ||
+      ['gclid','gbraid','wbraid','fbclid','ttclid','msclkid','twclid','li_fat_id'].some(k => params.has(k));
+    if (!hasCampaign && document.referrer) {
+      try {
+        const ref = new URL(document.referrer);
+        if (ref.origin !== location.origin) {
+          params.set('utm_source', ref.hostname);
+          params.set('utm_medium', 'referral');
+        }
+      } catch (e) {}
+    }
+    const query = params.toString();
+    frame.src = '/road_to_statuette_WIKIDATA_Pix.html' + (query ? '?' + query : '');
     frame.addEventListener('load', () => {
       const doc = frame.contentDocument;
       if (!doc || doc.getElementById('share-score-loader')) return;
       const s = doc.createElement('script');
       s.id = 'share-score-loader';
-      s.src = '/share-score-loader.js?v=1';
+      s.src = '/share-score-loader.js?v=5';
       doc.body.appendChild(s);
     });
   </script>
