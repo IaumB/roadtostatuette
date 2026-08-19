@@ -1,6 +1,10 @@
 {
+  "functions": {
+    "api/hub.js": { "includeFiles": "hub-payload/**" }
+  },
   "rewrites": [
-    { "source": "/", "destination": "/share-score-preview.html" },
+    { "source": "/", "destination": "/api/hub" },
+    { "source": "/roadtostatuette", "destination": "/share-score-preview.html" },
     { "source": "/crm", "destination": "/crm.html" }
   ]
 }
