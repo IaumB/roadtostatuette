@@ -1,10 +1,12 @@
 {
-  "functions": {
-    "api/hub.js": { "includeFiles": "hub-payload/**" }
-  },
   "rewrites": [
-    { "source": "/", "destination": "/api/hub" },
-    { "source": "/roadtostatuette", "destination": "/share-score-preview.html" },
-    { "source": "/crm", "destination": "/crm.html" }
+    {
+      "source": "/roadtostatuette",
+      "destination": "/games/roadtostatuette/index.html"
+    },
+    {
+      "source": "/wikioculta",
+      "destination": "/games/wikioculta/index.html"
+    }
   ]
 }
